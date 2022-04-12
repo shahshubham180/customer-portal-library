@@ -1,5 +1,6 @@
 package com.springboot.tutorials.customerportallibrary.customer.service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -55,7 +62,14 @@ public class CustomerService {
 	public Customer createCustomerAccount(Customer customer) throws BookIdAndNameMismatchException, DataNotFoundException, JsonMappingException, JsonProcessingException {
 		log.info("Inside createCustomerAccount method of CustomerService");
 		if(StringUtils.isNotBlank(customer.getBookName())) {
-			Book book = template.getForObject(libraryUri+"/"+customer.getBookName(), Book.class);
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ((UserDetails)principal).getUsername();
+			String password = ((UserDetails)principal).getPassword();
+			HttpHeaders headers = new HttpHeaders();
+			headers.setBasicAuth(username, password);
+			HttpEntity request = new HttpEntity(headers);
+			ResponseEntity<Book> response = template.exchange(libraryUri+"/"+customer.getBookName(),HttpMethod.POST, request, Book.class);
+			Book book = response.getBody();
 			if(Objects.isNull(book)) {
 				log.info("Book is not registered. Please register the Book");
 				throw new DataNotFoundException("Book is not registered. Please register the Book");
