@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    config:
+      enabled: 'true'
+      uri: https://config-server-12-factor-app.herokuapp.com

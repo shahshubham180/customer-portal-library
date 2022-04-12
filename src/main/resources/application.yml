@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: customerportallibrary
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+        
+senior:
+  citizen: Jadoo
+junior:
+  citizen: Jaddi
