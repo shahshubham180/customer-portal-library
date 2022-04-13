@@ -58,13 +58,15 @@ public class CustomerService {
 	
 	@Value("${library-app.uri}")
 	private String libraryUri;
+	
+	@Value("${auth.password}")
+	private String password;
 
 	public Customer createCustomerAccount(Customer customer) throws BookIdAndNameMismatchException, DataNotFoundException, JsonMappingException, JsonProcessingException {
 		log.info("Inside createCustomerAccount method of CustomerService");
 		if(StringUtils.isNotBlank(customer.getBookName())) {
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String username = ((UserDetails)principal).getUsername();
-			String password = ((UserDetails)principal).getPassword();
 			HttpHeaders headers = new HttpHeaders();
 			headers.setBasicAuth(username, password);
 			HttpEntity request = new HttpEntity(headers);
