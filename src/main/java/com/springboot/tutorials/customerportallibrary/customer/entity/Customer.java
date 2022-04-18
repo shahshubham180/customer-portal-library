@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Schema(description = "Auto Generated Customer ID", example = "1", hidden = true)
 	private Long custId;
 	
