@@ -70,7 +70,7 @@ public class CustomerService {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setBasicAuth(username, password);
 			HttpEntity request = new HttpEntity(headers);
-			ResponseEntity<Book> response = template.exchange(libraryUri+"/books/getBook/"+customer.getBookName(),HttpMethod.POST, request, Book.class);
+			ResponseEntity<Book> response = template.exchange(libraryUri+"/books/getBook/"+customer.getBookName(),HttpMethod.GET, request, Book.class);
 			Book book = response.getBody();
 			if(Objects.isNull(book)) {
 				log.info("Book is not registered. Please register the Book");
