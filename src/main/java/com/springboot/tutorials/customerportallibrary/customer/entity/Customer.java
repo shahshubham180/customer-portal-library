@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Schema(description = "Customer Information")
 public class Customer {
 	
@@ -41,5 +44,9 @@ public class Customer {
 	
 	@Schema(description = "Book Name", example = "Angels and Demons")
 	private String bookName;
+	
+	private String plantype;
+	
+	private String occupation;
 
 }
