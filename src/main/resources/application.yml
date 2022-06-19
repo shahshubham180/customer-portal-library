@@ -9,6 +9,6 @@ management:
         include: refresh
         
 senior:
-  citizen: Jadoo
+  citizen: Jadooo
 junior:
   citizen: Jaddi
