@@ -21,6 +21,7 @@
     	<sonar.jacoco.reportPath>C:\Users\shubshah\Downloads\swagger-hub\target\jacoco.exec</sonar.jacoco.reportPath>
     	<sonar.language>java</sonar.language>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
