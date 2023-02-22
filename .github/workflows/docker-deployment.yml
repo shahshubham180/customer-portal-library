@@ -22,7 +22,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build Application
-      run: mvn clean install
+      run: mvn clean install -Dspring.profiles.active=prod
     - name: Build & Push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
