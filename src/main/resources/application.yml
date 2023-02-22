@@ -1,6 +1,12 @@
 spring:
   application:
     name: customerportallibrary
+  datasource:
+    username: root
+    url: http://localhost:3307/customerportallibrary
+    password: root
+  jpa:
+    generate-ddl: false  
   
 management:
   endpoints:
@@ -12,3 +18,6 @@ senior:
   citizen: Jadooo
 junior:
   citizen: Jaddi
+  
+
+  
