@@ -3,7 +3,7 @@ spring:
     name: customerportallibrary
   datasource:
     username: root
-    url: http://localhost:3307/customerportallibrary
+    url: jdbc:mysql://localhost:3307/customerportallibrary
     password: root
   jpa:
     generate-ddl: false  
