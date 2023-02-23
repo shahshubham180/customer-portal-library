@@ -1,19 +1,7 @@
 spring:
   application:
     name: customerportallibrary
-  datasource:
-    username: root
-    url: jdbc:mysql://mysqldb:3306/customerportallibrary
-    password: root
-  jpa:
-    generate-ddl: true  
-  
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh
-        
+          
 senior:
   citizen: Jadooo
 junior:
